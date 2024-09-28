@@ -1,54 +1,148 @@
+import React, { useState, useEffect } from "react";
 import {
+    AppBar,
+    Toolbar,
+    Button,
+    useMediaQuery,
+    useTheme,
     Box,
-    List,
-    ListItem,
-    ListItemText,
-} from '@mui/material'
-import { styled } from 'styled-components/'
+    Typography,
+} from "@mui/material";
 
-const Header = () => {
-    return (
-        <HeaderWrapper>
-            <HeaderSetter>
-                <HeaderItems>
-                    <List>
-                        <ListItem>
-                            <ListItemText primary='Home' />
-                        </ListItem>
-                    </List>
-                </HeaderItems>
-            </HeaderSetter>
-        </HeaderWrapper>
-    );
+const sections = {
+    home: "Home",
+    experiences: "Experiences",
+    projects: "Projects",
+    contact: "Contact",
 };
 
-const HeaderWrapper = styled.header`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    color: ${(props) => props.theme.palette.text.primary};
-    background-color: ${(props) => props.theme.palette.background.paper};
-    min-height: 84px;
-`;
+const Header: React.FC = () => {
+    const [activeSection, setActiveSection] = useState("home");
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-const HeaderSetter = styled(Box)`
-    background-color: ${(props) => props.theme.palette.common.black} !important;
-    justify-content: center;
-    padding: 10px 20px;
-    align-items: center;
-    max-width: calc(100% - 250px);
-    width: 100%;
-    margin: auto;
-    border-radius: 50px;
-    height: 30px;
-`;
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const offset = windowHeight / 3;
 
+            for (const [id, label] of Object.entries(sections)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (
+                        scrollPosition >= offsetTop - offset &&
+                        scrollPosition < offsetTop + offsetHeight - offset
+                    ) {
+                        setActiveSection(id);
+                        break;
+                    }
+                }
+            }
+        };
 
-const HeaderItems = styled(Box)`
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-`;
+    const handleNavClick = (id: string) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
+    const renderNavItems = () =>
+        Object.entries(sections).map(([id, label]) => (
+            <Button
+                key={id}
+                color="inherit"
+                onClick={() => handleNavClick(id)}
+                disableRipple
+                sx={{
+                    fontFamily: theme.typography.fontFamily,
+                    fontSize: theme.typography.h2.fontSize,
+                    color:
+                        activeSection === id
+                            ? theme.palette.primary.main
+                            : theme.palette.text.primary,
+                    fontWeight: activeSection === id ? "bold" : "normal",
+                    "&:hover": {
+                        backgroundColor: theme.palette.background.default,
+                    },
+                }}
+            >
+                {activeSection === id ? "[" + label + "]" : label}
+            </Button>
+        ));
+
+    const NameComponent = () => (
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography
+                variant="h1"
+                component="span"
+                sx={{ color: theme.palette.success.main }}
+            >
+                {"<"}
+            </Typography>
+            <Typography
+                component="span"
+                variant="h1"
+                sx={{ color: theme.palette.text.primary }}
+            >
+                &nbsp;{"Mihiran"}&nbsp;
+            </Typography>
+            <Typography
+                variant="h1"
+                component="span"
+                sx={{ color: theme.palette.text.primary }}
+            >
+                &nbsp;{"Pandey"}&nbsp;
+            </Typography>
+            <Typography
+                variant="h1"
+                component="span"
+                sx={{ color: theme.palette.success.main }}
+            >
+                {" />"}
+            </Typography>
+        </Box>
+    );
+
+    return (
+        <AppBar
+            elevation={0}
+            sx={{
+                backgroundColor: theme.palette.background.default,
+                borderBottom: "none",
+                marginTop: 2,
+            }}
+        >
+            <Toolbar
+                variant="dense"
+                sx={{
+                    justifyContent: isMobile ? "center" : "space-between",
+                    minHeight: 48, // Ensures a consistently thin header
+                }}
+            >
+                <NameComponent />
+                {!isMobile && (
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {renderNavItems()}
+                    </Box>
+                )}
+            </Toolbar>
+        </AppBar>
+    );
+};
 
 export default Header;
