@@ -1,15 +1,24 @@
 import React from "react";
-import { ThemeProvider, CssBaseline } from "@mui/material";
+import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import theme from "./theme/theme";
 import Header from "./components/header";
-// Import other components as needed
+import SparklingBackground from "./components/sparkling_background";
+import Hero from "./components/hero";
 
 function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header />
-            {/* Other components */}
+            <Box sx={{ position: "relative", minHeight: "100vh" }}>
+                <SparklingBackground />
+                <Header />
+                <Box id="Home" sx={{ position: "relative", zIndex: 1 }}>
+                    <Hero />
+                </Box>
+                <Box id="Experiences" sx={{ position: "relative", zIndex: 1 }}>
+                    <Hero />
+                </Box>
+            </Box>
         </ThemeProvider>
     );
 }

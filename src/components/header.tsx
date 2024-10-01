@@ -116,7 +116,7 @@ const Header: React.FC = () => {
             sx={{
                 backgroundColor: theme.palette.background.default,
                 borderBottom: "none",
-                marginTop: 2,
+                display: "flex",
             }}
         >
             <Toolbar
