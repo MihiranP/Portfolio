@@ -4,6 +4,7 @@ import theme from "./theme/theme";
 import Header from "./components/header";
 import SparklingBackground from "./components/sparkling_background";
 import Hero from "./components/hero";
+import Experiences from "./components/experiences";
 
 function App() {
     return (
@@ -16,7 +17,7 @@ function App() {
                     <Hero />
                 </Box>
                 <Box id="Experiences" sx={{ position: "relative", zIndex: 1 }}>
-                    <Hero />
+                    <Experiences />
                 </Box>
             </Box>
         </ThemeProvider>

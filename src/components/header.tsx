@@ -91,14 +91,14 @@ const Header: React.FC = () => {
                 variant="h1"
                 sx={{ color: theme.palette.text.primary }}
             >
-                &nbsp;{"Mihiran"}&nbsp;
+                &nbsp;{"Mihiran's"}&nbsp;
             </Typography>
             <Typography
                 variant="h1"
                 component="span"
                 sx={{ color: theme.palette.text.primary }}
             >
-                &nbsp;{"Pandey"}&nbsp;
+                &nbsp;{"Portfolio"}&nbsp;
             </Typography>
             <Typography
                 variant="h1"
