@@ -123,7 +123,7 @@ const Header: React.FC = () => {
                 variant="dense"
                 sx={{
                     justifyContent: isMobile ? "center" : "space-between",
-                    minHeight: 48, // Ensures a consistently thin header
+                    minHeight: 48,
                 }}
             >
                 <NameComponent />
