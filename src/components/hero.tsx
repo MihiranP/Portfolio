@@ -5,33 +5,17 @@ import theme from "../theme/theme";
 
 const NameComponent = () => (
     <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <Typography
-            variant="h4"
-            component="span"
-            sx={{ color: theme.palette.success.main }}
-        >
+        <Typography variant="h4" component="span" color="success">
             {"<"}
         </Typography>
-        <Typography
-            component="span"
-            variant="h4"
-            sx={{ color: theme.palette.text.primary }}
-        >
-            &nbsp;{"Mihiran"}&nbsp;
+        <Typography component="span" variant="h4" color="default">
+            {"Mihiran"}
         </Typography>
-        <Typography
-            variant="h4"
-            component="span"
-            sx={{ color: theme.palette.text.primary }}
-        >
-            &nbsp;{"Pandey"}&nbsp;
+        <Typography variant="h4" component="span" color="default">
+            {"Pandey"}
         </Typography>
-        <Typography
-            variant="h4"
-            component="span"
-            sx={{ color: theme.palette.success.main }}
-        >
-            {" />"}
+        <Typography variant="h4" component="span" color="success">
+            {"/>"}
         </Typography>
     </Box>
 );
