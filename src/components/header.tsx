@@ -10,22 +10,34 @@ import {
 } from "@mui/material";
 
 const sections = {
-    home: "Home",
-    experiences: "Experiences",
-    projects: "Projects",
-    contact: "Contact",
+    Home: "Home",
+    Experiences: "Experiences",
+    Projects: "Projects",
+    Contact: "Contact",
 };
 
 const Header: React.FC = () => {
-    const [activeSection, setActiveSection] = useState("home");
+    const [activeSection, setActiveSection] = useState("Home");
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const headerHeight = 48;
+
+    // on page load we start at top because our handlescroll breaks if refreshed in middle of page (lol)
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
             const offset = windowHeight / 3;
+            const documentHeight = document.documentElement.scrollHeight;
+
+            if (scrollPosition + windowHeight >= documentHeight - 100) {
+                setActiveSection("Contact");
+                return;
+            }
 
             for (const [id, label] of Object.entries(sections)) {
                 const element = document.getElementById(id);
@@ -49,7 +61,14 @@ const Header: React.FC = () => {
     const handleNavClick = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+                elementPosition + window.pageYOffset - headerHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
         }
     };
 

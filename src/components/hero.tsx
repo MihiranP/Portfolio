@@ -3,6 +3,39 @@ import React from "react";
 import pfp2 from "../assets/MihiranPic2.jpg";
 import theme from "../theme/theme";
 
+const NameComponent = () => (
+    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Typography
+            variant="h4"
+            component="span"
+            sx={{ color: theme.palette.success.main }}
+        >
+            {"<"}
+        </Typography>
+        <Typography
+            component="span"
+            variant="h4"
+            sx={{ color: theme.palette.text.primary }}
+        >
+            &nbsp;{"Mihiran"}&nbsp;
+        </Typography>
+        <Typography
+            variant="h4"
+            component="span"
+            sx={{ color: theme.palette.text.primary }}
+        >
+            &nbsp;{"Pandey"}&nbsp;
+        </Typography>
+        <Typography
+            variant="h4"
+            component="span"
+            sx={{ color: theme.palette.success.main }}
+        >
+            {" />"}
+        </Typography>
+    </Box>
+);
+
 const Hero: React.FC = () => {
     return (
         <Box
@@ -18,45 +51,35 @@ const Hero: React.FC = () => {
                 textAlign: "center",
             }}
         >
+            <Typography variant="h4" component="h4" gutterBottom>
+                Hello! I am
+            </Typography>
             <Box
+                component="img"
                 sx={{
-                    backgroundColor: theme.palette.background.default,
-                    padding: "40px",
+                    maxWidth: 400,
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
                     borderRadius: "25px",
+                    padding: "10px",
                 }}
+                alt="profile pic of Mihiran"
+                src={pfp2}
+            />
+            <NameComponent />
+            <Typography
+                variant="body1"
+                maxWidth="600px"
+                sx={{ paddingTop: "10px" }}
             >
-                <Typography variant="h4" component="h4" gutterBottom>
-                    Hello, I am
-                </Typography>
-                <Box
-                    component="img"
-                    sx={{
-                        maxWidth: 400,
-                        width: "100%",
-                        height: "auto",
-                        objectFit: "cover",
-                        borderRadius: "25px",
-                        padding: "10px",
-                    }}
-                    alt="profile pic of Mihiran"
-                    src={pfp2}
-                />
-                <Typography variant="h4" component="h4" gutterBottom>
-                    Mihiran Pandey
-                </Typography>
-                <Typography
-                    variant="body1"
-                    maxWidth="600px"
-                    sx={{ paddingTop: "10px" }}
-                >
-                    I am an innovative Software Engineer with hands-on
-                    experience in developing AI-powered applications and web
-                    solutions. Skilled in full-stack development with experience
-                    programming in C++, Python, and JavaScript frameworks, with
-                    a strong foundation in large language model integration and
-                    distributed computing via Cloud Platforms like AWS.
-                </Typography>
-            </Box>
+                I'm an innovative Software Engineer with hands-on experience in
+                developing AI-powered applications and web solutions. I'm
+                skilled in full-stack development with experience programming in
+                C++, Python, and JavaScript frameworks, with a strong foundation
+                in large language model integration and distributed computing
+                via Cloud Platforms like AWS.
+            </Typography>
         </Box>
     );
 };

@@ -59,7 +59,7 @@ const projects: ProjectData[] = [
     {
         title: "Portfolio Website",
         description: [
-            "Developed a modern portfolio website using React, TypeScript, and Material-UI (MUI) to showcase projects and skills",
+            "Developed a modern portfolio website using React, TypeScript, and Material-UI (MUI) to showcase projects, skills, and experiences",
             "Implemented a custom dark theme inspired by Dracula color palette, featuring sleek animations and responsive design",
             "Deployed and maintained the application using GitHub Pages, ensuring continuous availability and easy updates",
         ],
